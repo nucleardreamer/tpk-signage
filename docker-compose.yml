@@ -1,0 +1,31 @@
+version: "2.1"
+
+volumes:
+  settings:
+
+services:
+  menu-app:
+    build: ./
+    privileged: true
+    network_mode: host
+    ports:
+      - '3000'
+  wifi-connect:
+    image: bh.cr/balenalabs/wifi-connect-armv7hf
+    network_mode: host
+    privileged: true
+    labels:
+      io.balena.features.dbus: '1'
+      io.balena.features.firmware: '1'
+    cap_add:
+      - NET_ADMIN
+    environment:
+      DBUS_SYSTEM_BUS_ADDRESS: "unix:path=/host/run/dbus/system_bus_socket"
+  browser:
+    image: bh.cr/balenalabs/browser-armv7hf
+    privileged: true
+    ports:
+        - '5011' # management API
+        - '35173' # Chromium debugging port
+    volumes:
+      - 'settings:/data'

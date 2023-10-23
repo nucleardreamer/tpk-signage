@@ -1,0 +1,11 @@
+each catItems, catTitle in cats
+    .category
+        .menu-title= catTitle
+        each item in catItems
+            .d-flex.flex-column.mb-3
+                .d-flex.flex-row
+                    b.name= item.Name
+                    .mr-2.ml-2.light-grey |
+                    .slug= item.Slug
+                div
+                    i= item.Description
