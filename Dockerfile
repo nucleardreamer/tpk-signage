@@ -1,4 +1,4 @@
-FROM balenalib/armv7hf-node:18-buster-run
+FROM balenalib/aarch64-node:18-buster-run
 
 COPY package*.json ./
 
