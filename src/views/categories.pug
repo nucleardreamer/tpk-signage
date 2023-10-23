@@ -1,11 +1,12 @@
 each catItems, catTitle in cats
     .category
-        .menu-title= catTitle
+        .menu-title.pb-2= catTitle
         each item in catItems
-            .d-flex.flex-column.mb-3
+            .d-flex.flex-column.mb-4
                 .d-flex.flex-row
                     b.name= item.Name
                     .mr-2.ml-2.light-grey |
                     .slug= item.Slug
+                    i.price.ml-2 ($#{item.Price})
                 div
                     i= item.Description

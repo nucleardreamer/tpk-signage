@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const path = require('path')
 const express = require('express')
 const app = express()
@@ -65,7 +67,6 @@ async function getItems() {
             }
             try {
                 let data = []
-                // console.log(records)
                 records.forEach(function(record) {
                     console.log('Retrieved', record.fields)
                     data.push(record.fields)
