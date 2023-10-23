@@ -1,5 +1,9 @@
 on:
- pull_request:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+  pull_request:
     types: [opened, synchronize, closed]
     branches:
       - main
