@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const Airtable = require('airtable')
 const _ = require('lodash')
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 
 // airtable
 Airtable.configure({

@@ -9,7 +9,7 @@ services:
     privileged: true
     network_mode: host
     ports:
-      - '3000'
+      - '8080'
   wifi-connect:
     image: bh.cr/balenalabs/wifi-connect-aarch64
     network_mode: host
