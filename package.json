@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "npm run scss-build && node src/index.js",
     "dev": "nodemon src/index.js & npm run scss",
     "scss": "sass --watch src/public/main.scss src/public/main.css",
+    "scss-build": "sass src/public/main.scss src/public/main.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Flynn Joffray <nucleardreamer@gmail.com>",
