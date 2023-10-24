@@ -3,6 +3,7 @@ require('dotenv').config()
 const path = require('path')
 const express = require('express')
 const app = express()
+const axios = require('axios')
 const bodyParser = require('body-parser')
 const Airtable = require('airtable')
 const _ = require('lodash')
@@ -80,3 +81,27 @@ async function getItems() {
         })  
     })
 }
+
+// refresh timer
+
+let timer = null
+
+async function initRefreshTimer()
+{
+    timer = setInterval(function() {
+        refreshIt()
+    }, process.env.REFRESH_TIMER || 10000)
+}
+async function refreshIt()
+{
+    try {
+        await axios.post('http://localhost:5011/refresh')
+    } catch (err) {
+        console.error('Browser block not available for refresh')
+    }
+
+    clearInterval(timer.ref)
+    initRefreshTimer()
+}
+
+initRefreshTimer()
