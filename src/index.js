@@ -30,7 +30,8 @@ app.set('view engine', 'pug')
 
 app.get('/', (req, res) => {
     res.render('index', {
-        orientation: process.env.MENU_ORIENTATION || 'vertical'
+        orientation: process.env.MENU_ORIENTATION || 'vertical',
+        refreshTimer: process.env.REFRESH_TIMER || 10000
     })
 })
 
@@ -82,26 +83,3 @@ async function getItems() {
     })
 }
 
-// refresh timer
-
-let timer = null
-
-async function initRefreshTimer()
-{
-    timer = setInterval(function() {
-        refreshIt()
-    }, process.env.REFRESH_TIMER || 10000)
-}
-async function refreshIt()
-{
-    try {
-        await axios.post('http://localhost:5011/refresh')
-    } catch (err) {
-        console.error('Browser block not available for refresh')
-    }
-
-    clearInterval(timer.ref)
-    initRefreshTimer()
-}
-
-initRefreshTimer()
