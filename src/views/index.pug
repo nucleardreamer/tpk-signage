@@ -4,14 +4,15 @@ html
     link(rel='stylesheet', href='bootstrap.min.css')
     link(rel='stylesheet', href='main.css')
     script(src='htmx.js')
-  body
+  body(class=orientation)
     .container
         .row
           .top-logo
             img(src='images/backpack-logo.webp')
         .row
-            .col-12(
+            .categories.col-12(
                 hx-get='/categories',
                 hx-trigger='load',
                 hx-swap='innerHTML'
             )
+    .bottom-art
