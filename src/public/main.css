@@ -81,7 +81,7 @@ body, html {
 
 .codes {
   position: absolute;
-  top: 3200px;
+  top: 3000px;
   width: 100%;
   z-index: 3;
   display: flex;
