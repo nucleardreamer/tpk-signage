@@ -31,7 +31,7 @@ app.set('view engine', 'pug')
 app.get('/', (req, res) => {
     res.render('index', {
         orientation: process.env.MENU_ORIENTATION || 'vertical',
-        refreshTimer: process.env.REFRESH_TIMER || 10000
+        refreshTimer: process.env.REFRESH_TIMER || 30000
     })
 })
 

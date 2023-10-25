@@ -9,12 +9,12 @@ html
     script(src='main.js')
 
   body(class=orientation)
-    .container
-        .row
+    .content
+        div
           .top-logo
             img(src='images/backpack-logo.webp')
-        .row
-            .categories.col-12(
+        div
+            .categories(
                 hx-get='/categories',
                 hx-trigger='load',
                 hx-swap='innerHTML'
