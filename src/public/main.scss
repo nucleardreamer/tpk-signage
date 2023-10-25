@@ -90,12 +90,14 @@ body,html {
 
 }
 .code {
-    font-weight: bold;
+    .title {
+        font-weight: bold;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    padding: 20px;
+    padding: 40px;
     border-radius: 20px;
     &:last-child {
         margin-left: 150px;
