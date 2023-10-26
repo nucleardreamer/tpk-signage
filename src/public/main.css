@@ -81,7 +81,7 @@ body, html {
 
 .codes {
   position: absolute;
-  top: 3000px;
+  top: 3200px;
   width: 100%;
   z-index: 3;
   display: flex;
@@ -101,7 +101,7 @@ body, html {
   font-weight: bold;
 }
 .code:last-child {
-  margin-left: 150px;
+  margin-left: 1060px;
 }
 
 /*# sourceMappingURL=main.css.map */
