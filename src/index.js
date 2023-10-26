@@ -54,8 +54,8 @@ app.get('/refresh', async (req, res) => {
     }
 })
 
-app.get('/changeurl', async (req, res) => {
-    let toChange = req.query.url
+app.post('/changeurl', async (req, res) => {
+    let toChange = req.body.url
     if(!toChange) {
         res.sendStatus(500)
     }
@@ -70,7 +70,7 @@ app.get('/changeurl', async (req, res) => {
         })
         res.send(r)
     } catch (err) {
-        console.error('damn', err)
+        console.error('changeurl error', err)
         res.send(err)
     }
 })

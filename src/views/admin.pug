@@ -9,5 +9,15 @@ html
     script(src='htmx.js')
   body 
     div admin
-    button(hx-get="/refresh") Refresh page
+    button(hx-get='/refresh') Refresh page
+    form(
+        hx-post='/changeurl'
+    )
+        label(for='url') Change URL 
+        input(
+            type='text',
+            id='url'
+            name='url'
+        )
+        button(type='submit') Submit
 
