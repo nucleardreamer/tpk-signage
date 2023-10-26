@@ -28,6 +28,12 @@ app.use(bodyParser.json())
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
+// root is actuall the admin interface
+app.get('/', async (req, res) => {
+    res.render('admin')
+})
+
+// main webapp url
 app.get('/index', (req, res) => {
     res.render('index', {
         orientation: process.env.MENU_ORIENTATION || 'vertical',
@@ -53,7 +59,7 @@ app.get('/categories', async (req, res) => {
 
 app.get('/refresh', async (req, res) => {
     try {
-        let r = await axios.post('http://localhost:5011/refresh')
+        let r = await axios.post('http://192.168.0.86:5011/refresh')
         res.send('Refresh success!')
     } catch (err) {
         res.send('Refresh error! Try again')
@@ -63,33 +69,22 @@ app.get('/refresh', async (req, res) => {
 app.post('/changeurl', async (req, res) => {
     let toChange = req.body.url
     if(!toChange) {
-        res.sendStatus(500)
+        toChange = 'localhost/index'
     }
     toChange = toChange.replace('http://', '').replace('https://', '')
     try {
-        let r = await axios({
-            method: 'put',
-            url: 'http://localhost:5011/url',
-            data: {
+        let r = await axios.post(
+            'http://localhost:5011/url',
+            {
                 url: toChange
             }
-        })
-        res.send(r)
+        )
+        res.sendStatus(200)
     } catch (err) {
-        console.error('changeurl error', err)
-        res.send(err)
+        console.error('changeurl error', err.message)
+        res.send(err.message)
     }
 })
-
-// clone current express app for admin routes
-admin = app
-
-admin.get('/', async (req, res) => {
-    res.render('admin')
-})
-
-// setup default app route
-
 
 app.listen(port, () => {
   console.log(`* started on port: ${port}`)

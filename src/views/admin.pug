@@ -5,19 +5,30 @@ html
     link(rel="preconnect", href="https://fonts.gstatic.com",  crossorigin)
     link(href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Open+Sans:wght@300;400;500;600;700&display=swap", rel="stylesheet")
     link(rel='stylesheet', href='bootstrap.min.css')
-    link(rel='stylesheet', href='main.css')
     script(src='htmx.js')
+    style.
+        .hr {
+            border-bottom: 1px solid #888;
+            margin: 20px 0px;
+        }
   body 
-    div admin
-    button(hx-get='/refresh') Refresh page
-    form(
-        hx-post='/changeurl'
-    )
-        label(for='url') Change URL 
-        input(
-            type='text',
-            id='url'
-            name='url'
-        )
-        button(type='submit') Submit
-
+    .container
+        .col-12
+            .row
+                h1 Admin page
+            .hr
+            .row
+                button(hx-get='/refresh') Refresh page
+            .hr
+            .row
+                form(
+                    hx-post='/changeurl'
+                )
+                    label(for='url') Change URL. Submit empty to reset back to the original menu app.
+                    br
+                    input(
+                        type='text',
+                        id='url'
+                        name='url'
+                    )
+                    button(type='submit') Submit
