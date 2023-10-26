@@ -51,6 +51,37 @@ app.get('/categories', async (req, res) => {
     })
 })
 
+app.get('/refresh', async (req, res) => {
+    try {
+        let r = await axios.post('http://localhost:5011/refresh')
+        console.log(r)
+        res.send(r)
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+app.get('/changeurl', async (req, res) => {
+    let toChange = req.query.url
+    if(!toChange) {
+        res.sendStatus(500)
+    }
+    toChange = toChange.replace('http://', '').replace('https://', '')
+    try {
+        let r = await axios({
+            method: 'put',
+            url: 'http://localhost:5011/url',
+            data: {
+                url: toChange
+            }
+        })
+        res.send(r)
+    } catch (err) {
+        console.error('damn', err)
+        res.send(err)
+    }
+})
+
 app.listen(port, () => {
   console.log(`* started on port: ${port}`)
 })
