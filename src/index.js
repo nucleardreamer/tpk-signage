@@ -9,6 +9,7 @@ const Airtable = require('airtable')
 const _ = require('lodash')
 
 const port = process.env.PORT || 8080
+const adminPort = process.env.ADMIN_PORT || 9000
 
 // airtable
 Airtable.configure({
@@ -27,13 +28,6 @@ app.use(bodyParser.json())
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
-
-app.get('/', (req, res) => {
-    res.render('index', {
-        orientation: process.env.MENU_ORIENTATION || 'vertical',
-        refreshTimer: process.env.REFRESH_TIMER || 30000
-    })
-})
 
 app.get('/inventory', async (req, res) => {
     let items = await getItems()
@@ -81,12 +75,27 @@ app.get('/changeurl', async (req, res) => {
     }
 })
 
-app.get('/admin', async (req, res) => {
+// clone current express app for admin routes
+admin = app
+
+admin.get('/', async (req, res) => {
     res.render('admin')
+})
+
+// setup default app route
+app.get('/', (req, res) => {
+    res.render('index', {
+        orientation: process.env.MENU_ORIENTATION || 'vertical',
+        refreshTimer: process.env.REFRESH_TIMER || 30000
+    })
 })
 
 app.listen(port, () => {
   console.log(`* started on port: ${port}`)
+})
+
+admin.listen(adminPort, () => {
+  console.log(`* Admin started on port: ${adminPort}`)
 })
 
 // const CloverClient = CloverRestful.client('https://apisandbox.dev.clover.com')
