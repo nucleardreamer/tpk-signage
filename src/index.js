@@ -79,7 +79,7 @@ app.post('/changeurl', async (req, res) => {
                 url: toChange
             }
         )
-        res.sendStatus(200)
+        res.send('Changing URL! Refresh this page to do it again.')
     } catch (err) {
         console.error('changeurl error', err.message)
         res.send(err.message)
