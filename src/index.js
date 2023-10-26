@@ -54,10 +54,9 @@ app.get('/categories', async (req, res) => {
 app.get('/refresh', async (req, res) => {
     try {
         let r = await axios.post('http://localhost:5011/refresh')
-        console.log(r)
-        res.send(r)
+        res.send('Refresh success!')
     } catch (err) {
-        res.send(err)
+        res.send('Refresh error! Try again')
     }
 })
 
@@ -80,6 +79,10 @@ app.get('/changeurl', async (req, res) => {
         console.error('damn', err)
         res.send(err)
     }
+})
+
+app.get('/admin', async (req, res) => {
+    res.render('admin')
 })
 
 app.listen(port, () => {
