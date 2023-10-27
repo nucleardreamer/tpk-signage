@@ -7,6 +7,7 @@ The application displays via the [browser block](https://github.com/balena-labs-
 - Node.js and express server. This uses `pug` for HTML rendering and `scss` for CSS compilation.
 - The front-end app uses `htmx` and `bootstrap`.
 - The API for the front-end uses routes that hit [airtable](https://airtable.com/) for menu items.
+- Root url at `/` displays the "admin" interface. The main webapp lives at `/index`
 
 There is also a Github workflow that uses the [Deploy to Balena](https://github.com/balena-io/deploy-to-balena-action) action.
 

@@ -16,6 +16,10 @@ body, html {
   font-family: "Noto Sans", sans-serif;
 }
 
+body {
+  background-color: #f8f8f8;
+}
+
 @media (min-width: 1200px) {
   .container {
     max-width: 100%;
@@ -30,12 +34,6 @@ body, html {
 .vertical {
   height: 3840px;
   width: 2160px;
-  background-color: #f8f8f8;
-}
-
-.horizontal {
-  height: 2160px;
-  width: 3840px;
 }
 
 .light-grey {
@@ -104,6 +102,27 @@ body, html {
 }
 .code:last-child {
   margin-left: 1060px;
+}
+
+.horizontal {
+  height: 2160px;
+  width: 3840px;
+}
+.horizontal .bottom-art {
+  display: none;
+}
+.horizontal .codes {
+  position: absolute;
+  top: 1580px;
+  padding-right: 100px;
+  width: 100%;
+  z-index: 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.horizontal .codes .code:last-child {
+  margin-left: 100px;
 }
 
 /*# sourceMappingURL=main.css.map */

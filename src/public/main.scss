@@ -13,7 +13,10 @@ body,html {
     left: 0;
     font-size: 140%;
     font-family: 'Noto Sans', sans-serif;
+}
 
+body {
+    background-color: #f8f8f8;
 }
 
 @media (min-width: 1200px) {
@@ -31,11 +34,8 @@ body,html {
 .vertical {
     height: 3840px;
     width: 2160px;
-    background-color: #f8f8f8;
 }
 .horizontal {
-    height: 2160px;
-    width: 3840px;
 }
 
 .light-grey {
@@ -89,7 +89,6 @@ body,html {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
 }
 .code {
     .title {
@@ -103,5 +102,28 @@ body,html {
     border-radius: 20px;
     &:last-child {
         margin-left: 1060px;
+    }
+}
+
+.horizontal {
+    height: 2160px;
+    width: 3840px;
+    .bottom-art {
+        display: none;
+    }
+    .codes {
+        position: absolute;
+        top: 1580px;
+        padding-right: 100px;
+        width: 100%;
+        z-index: 3;
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        .code {
+            &:last-child {
+                margin-left: 100px;
+            }
+        }
     }
 }
