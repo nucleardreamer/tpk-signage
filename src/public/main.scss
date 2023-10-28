@@ -35,8 +35,6 @@ body {
     height: 3840px;
     width: 2160px;
 }
-.horizontal {
-}
 
 .light-grey {
     color: #bbbbbb;
@@ -68,6 +66,7 @@ body {
     justify-content: center;
     align-items: center;
     padding-top: 80px;
+    display: none;
 }
 
 .bottom-art {
@@ -89,19 +88,19 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-.code {
-    .title {
-        font-weight: bold;
-    }
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 20px;
-    &:last-child {
-        margin-left: 1060px;
+    .code {
+        .title {
+            font-weight: bold;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 20px;
+        &:last-child {
+            margin-left: 1060px;
+        }
     }
 }
 

@@ -66,6 +66,7 @@ body {
   justify-content: center;
   align-items: center;
   padding-top: 80px;
+  display: none;
 }
 
 .bottom-art {
@@ -88,8 +89,7 @@ body {
   flex-direction: row;
   justify-content: center;
 }
-
-.code {
+.codes .code {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,10 +97,10 @@ body {
   padding: 40px;
   border-radius: 20px;
 }
-.code .title {
+.codes .code .title {
   font-weight: bold;
 }
-.code:last-child {
+.codes .code:last-child {
   margin-left: 1060px;
 }
 
