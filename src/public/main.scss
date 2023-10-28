@@ -115,16 +115,19 @@ body {
     }
     .codes {
         position: absolute;
-        top: 1580px;
-        padding-right: 100px;
+        top: 950px;
+        padding-right: 180px;
         width: 100%;
         z-index: 3;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: right;
+        right: 60px;
+        width: 630px;
         .code {
             &:last-child {
-                margin-left: 100px;
+                margin-left: 0px;
+                margin-top: 60px;
             }
         }
     }
