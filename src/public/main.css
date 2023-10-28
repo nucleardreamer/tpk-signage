@@ -108,6 +108,9 @@ body {
   height: 2160px;
   width: 3840px;
 }
+.horizontal .top-logo {
+  padding-top: 180px;
+}
 .horizontal .bottom-art {
   display: none;
 }
@@ -123,6 +126,9 @@ body {
 }
 .horizontal .codes .code:last-child {
   margin-left: 100px;
+}
+.horizontal .categories {
+  padding: 0px 100px 0 250px;
 }
 
 /*# sourceMappingURL=main.css.map */
