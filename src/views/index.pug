@@ -8,6 +8,14 @@ html
     link(rel='stylesheet', href='main.css')
     script.
       window.refreshTimer="#{refreshTimer}";
+    style.
+      .bottom-art {
+        background-image: url('#{config.bottom_art_url}') !important;
+        height: #{config.bottom_art_height} !important;
+      }
+      .codes {
+        display: #{config.show_qr_codes === 'false' ? 'none' : 'flex'} !important;
+      }
     script(src='htmx.js')
     script(src='main.js')
 

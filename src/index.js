@@ -40,7 +40,8 @@ app.get('/', async (req, res) => {
 app.get('/index', (req, res) => {
     res.render('index', {
         orientation: process.env.MENU_ORIENTATION || 'vertical',
-        refreshTimer: process.env.REFRESH_TIMER || 30000
+        refreshTimer: process.env.REFRESH_TIMER || 30000,
+        config
     })
 })
 
