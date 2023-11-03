@@ -17,11 +17,18 @@ html
           .top-logo
             img(src='images/backpack-logo.webp')
         div
-            .categories(
-                hx-get='/categories',
-                hx-trigger='load',
-                hx-swap='innerHTML'
-            )
+            if orientation == 'horizontal'
+              .categories(
+                  hx-get='/categories?menu_filter=true',
+                  hx-trigger='load',
+                  hx-swap='innerHTML'
+              )
+            else
+              .categories(
+                  hx-get='/categories',
+                  hx-trigger='load',
+                  hx-swap='innerHTML'
+              )
     .codes
       .code.events 
         .title Looking for a game?

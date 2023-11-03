@@ -10,6 +10,9 @@ const _ = require('lodash')
 
 const port = process.env.PORT || 8080
 
+// these are config options that get populated by an airtable call at the start of this program, see the end of the file
+var config = {}
+
 // airtable
 Airtable.configure({
     apiKey: process.env.AIRTABLE_TOKEN
@@ -43,15 +46,24 @@ app.get('/index', (req, res) => {
 
 app.get('/inventory', async (req, res) => {
     let items = await getItems()
-    console.log('ITEMS', items)
     let grouped = _.groupBy(items, 'Category')
     res.json(grouped)
 })
 
 app.get('/categories', async (req, res) => {
     let items = await getItems()
-    console.log('ITEMS', items)
+    // the whole list of items, keyed by every category
     let grouped = _.groupBy(items, 'Category')
+
+    // if ?filter=true is on the request, we will use the airtable 'menu_filter' value from the config (which gets loaded at start) and pick only the menu category keys that are set. Most likley scenario if this doesn't work is that the field in airtable is spelled wrong or has illegal characters
+    let filter = req.query.menu_filter === 'true'
+    if (filter) {
+        grouped = _.pick(
+            grouped,
+            config.menu_filter.split(',')
+        )
+    }
+
     res.render('categories', {
         cats: grouped
     })
@@ -59,7 +71,7 @@ app.get('/categories', async (req, res) => {
 
 app.get('/refresh', async (req, res) => {
     try {
-        let r = await axios.post('http://192.168.0.86:5011/refresh')
+        let r = await axios.post('http://localhost:5011/refresh')
         res.send('Refresh success!')
     } catch (err) {
         res.send('Refresh error! Try again')
@@ -107,8 +119,9 @@ async function getItems() {
             try {
                 let data = []
                 records.forEach(function(record) {
-                    console.log('Retrieved', record.fields)
-                    data.push(record.fields)
+                    if (!_.isEmpty(record.fields)) {
+                        data.push(record.fields)
+                    }
                 })
                 resolve(data)
             } catch (err) {
@@ -118,3 +131,36 @@ async function getItems() {
     })
 }
 
+async function getConfig() {
+    return new Promise((resolve, reject) => {
+        base('menu-configuration').select({
+            view: 'options'
+        }).firstPage((err, records) => {
+            if (err) {
+                console.error(err)
+                reject(err)
+                return
+            }
+            try {
+                let data = {}
+                records.forEach(function(record) {
+                    if (!_.isEmpty(record.fields)) {
+                        console.log('* Config retrieved -', record.fields.Option + ':', record.fields.Value)
+                        data[record.fields.Option] = record.fields.Value
+                    }
+                })
+                resolve(data)
+            } catch (err) {
+                console.log(err)
+            }        
+        })  
+    })
+}
+
+(async function () {
+    try {
+        config = await getConfig()
+    } catch (e) {
+        console.error('* Start function, cant getConfig')
+    }
+})()
