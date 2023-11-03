@@ -16,6 +16,9 @@ html
       .codes {
         display: #{config.show_qr_codes === 'false' ? 'none' : 'flex'} !important;
       }
+      .horizontal {
+        font-size: #{config.horizontal_font_size} !important;
+      }
     script(src='htmx.js')
     script(src='main.js')
 
