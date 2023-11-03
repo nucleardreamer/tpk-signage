@@ -79,6 +79,26 @@ app.get('/refresh', async (req, res) => {
     }
 })
 
+
+app.get('/reboot', async (req, res) => {
+    try {
+        let r = await axios.post(
+            `${process.env.BALENA_SUPERVISOR_ADDRESS}/v1/reboot?apikey=${process.env.BALENA_SUPERVISOR_API_KEY}`,
+            {},
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+        res.send('Rebooting device! This will take about ~3-4 minutes')
+    } catch (err) {
+        console.error('reboot error', err.message)
+        res.send(err.message)
+    }
+})
+
+
 app.post('/changeurl', async (req, res) => {
     let toChange = req.body.url
     if(!toChange) {

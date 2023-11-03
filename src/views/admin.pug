@@ -18,7 +18,7 @@ html
                 h1 Admin page
             .hr
             .row
-                button(hx-get='/refresh') Refresh page
+                button(hx-get='/refresh') Refresh Page
             .hr
             .row
                 form(
@@ -32,3 +32,7 @@ html
                         name='url'
                     )
                     button(type='submit') Submit
+            .hr 
+            .row
+                button(hx-get='/reboot') Reboot Device, This will take about ~3-4 minutes
+
