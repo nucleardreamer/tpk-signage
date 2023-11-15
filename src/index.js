@@ -184,7 +184,7 @@ async function getConfig() {
                 let cachedData = await cache.getCache('config.json')
                 resolve(cachedData)
             }        
-        })  
+        })
     })
 }
 

@@ -8,8 +8,8 @@ async function writeCache(fileName, data) {
     let dataString = JSON.stringify(data)
     let cachedString = await getCacheString(fileName)
     let isSameCache = await compareHashes(dataString, cachedString)
-    console.log('writeCache:', fileName, isSameCache)
     if (!isSameCache) {
+        console.log('* New cache written:', fileName)
         await fs.writeFile(
             path.join(cacheDir, fileName),
             dataString
@@ -29,6 +29,7 @@ async function getCacheString(fileName) {
 
 async function getCache(fileName) {
     let cachedString = await getCacheString(fileName)
+    console.log('* Fetching cache:', fileName)
     return JSON.parse(cachedString, {
         safe: true
     })
