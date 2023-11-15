@@ -8,6 +8,8 @@ const bodyParser = require('body-parser')
 const Airtable = require('airtable')
 const _ = require('lodash')
 
+const cache = require(path.join(__dirname, 'cache.js'))
+
 const port = process.env.PORT || 8080
 
 // these are config options that get populated by an airtable call at the start of this program, see the end of the file
@@ -98,7 +100,6 @@ app.get('/reboot', async (req, res) => {
     }
 })
 
-
 app.post('/changeurl', async (req, res) => {
     let toChange = req.body.url
     if(!toChange) {
@@ -131,10 +132,11 @@ async function getItems() {
     return new Promise((resolve, reject) => {
         base('menu-signage').select({
             view: 'menu'
-        }).firstPage((err, records) => {
+        }).firstPage(async (err, records) => {
             if (err) {
                 console.error(err)
-                reject(err)
+                let cachedData = await cache.getCache('menu.json')
+                resolve(cachedData)
                 return
             }
             try {
@@ -144,9 +146,12 @@ async function getItems() {
                         data.push(record.fields)
                     }
                 })
+                await cache.writeCache('menu.json', data)
                 resolve(data)
             } catch (err) {
                 console.log(err)
+                let cachedData = await cache.getCache('menu.json')
+                resolve(cachedData)
             }        
         })  
     })
@@ -156,10 +161,11 @@ async function getConfig() {
     return new Promise((resolve, reject) => {
         base('menu-configuration').select({
             view: 'options'
-        }).firstPage((err, records) => {
+        }).firstPage(async (err, records) => {
             if (err) {
                 console.error(err)
-                reject(err)
+                let cachedData = await cache.getCache('config.json')
+                resolve(cachedData)
                 return
             }
             try {
@@ -170,9 +176,13 @@ async function getConfig() {
                         data[record.fields.Option] = record.fields.Value
                     }
                 })
+                // write new cache from latest response
+                await cache.writeCache('config.json', data)
                 resolve(data)
             } catch (err) {
                 console.log(err)
+                let cachedData = await cache.getCache('config.json')
+                resolve(cachedData)
             }        
         })  
     })
