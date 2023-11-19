@@ -19,10 +19,13 @@ html
       .horizontal {
         font-size: #{config.horizontal_font_size} !important;
       }
+      body.dev {
+        overflow: scroll !important;
+      }
     script(src='htmx.js')
     script(src='main.js')
 
-  body(class=orientation)
+  body(class=orientation + " " + dev_mode)
     .content
         div
           .top-logo

@@ -43,6 +43,7 @@ app.get('/index', (req, res) => {
     res.render('index', {
         orientation: process.env.MENU_ORIENTATION || 'vertical',
         refreshTimer: process.env.REFRESH_TIMER || 30000,
+        dev_mode: process.env.DEV_MODE ? 'dev' : '',
         config
     })
 })
@@ -81,6 +82,15 @@ app.get('/refresh', async (req, res) => {
     }
 })
 
+app.get('/refresh_config', async (req, res) => {
+    try {
+        await pullConfig()
+        await axios.post('http://localhost:5011/refresh')
+        res.send('Refresh config success!')
+    } catch (err) {
+        res.send('Refresh config error! Try again')
+    }
+})
 
 app.get('/reboot', async (req, res) => {
     try {
@@ -170,6 +180,7 @@ async function getConfig() {
             }
             try {
                 let data = {}
+                console.log('* Fetching configs')
                 records.forEach(function(record) {
                     if (!_.isEmpty(record.fields)) {
                         console.log('* Config retrieved -', record.fields.Option + ':', record.fields.Value)
@@ -188,10 +199,14 @@ async function getConfig() {
     })
 }
 
-(async function () {
+async function pullConfig () {
     try {
         config = await getConfig()
     } catch (e) {
         console.error('* Start function, cant getConfig')
     }
+}
+
+(async function () {
+    pullConfig()
 })()

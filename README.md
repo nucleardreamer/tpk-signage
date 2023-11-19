@@ -27,4 +27,7 @@ AIRTABLE_BASE=<Base ID>
 AIRTABLE_TOKEN=<API key>
 PORT=8080
 REFRESH_TIMER=300000
+
+// only for local development
+DEV_MODE=true
 ```
