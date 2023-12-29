@@ -11,7 +11,11 @@ The application displays via the [browser block](https://github.com/balena-labs-
 
 There is also a Github workflow that uses the [Deploy to Balena](https://github.com/balena-io/deploy-to-balena-action) action.
 
-Environment variables for reference
+## Development
+
+Make sure to make a `.cache` directory in the root folder.
+
+Environment variables for reference, you will need to write these into a `.env` file, for local development:
 ```
 // browser block specific
 ENABLE_GPU=1
