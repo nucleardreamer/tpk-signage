@@ -3,11 +3,11 @@ each catItems, catTitle in cats
         .menu-title.pb-2= catTitle
         each item in catItems
             if item.Available
-                .d-flex.flex-column.mb-4
+                .d-flex.flex-column.mb-3
                     .d-flex.flex-row
                         b.name= item.Name
-                        .mr-2.ml-2.light-grey |
+                        .mr-1.ml-1.light-grey |
                         .slug= item.Slug
-                        i.price.ml-2 ($#{item.Price})
+                        i.price.ml-1 ($#{item.Price})
                     div
                         i= item.Description
