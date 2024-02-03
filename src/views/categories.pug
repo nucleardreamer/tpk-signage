@@ -8,6 +8,7 @@ each catItems, catTitle in cats
                         b.name= item.Name
                         .mr-1.ml-1.light-grey |
                         .slug= item.Slug
-                        i.price.ml-1 ($#{item.Price})
+                        .mr-1.ml-1.light-grey |
+                        i.price.ml-1 $#{item.Price}
                     div
                         i= item.Description
