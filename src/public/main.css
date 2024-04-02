@@ -135,5 +135,9 @@ body {
 .horizontal .categories {
   padding: 70px 100px 0 250px;
 }
+.horizontal .category {
+  break-inside: auto;
+  width: 1550px;
+}
 
 /*# sourceMappingURL=main.css.map */

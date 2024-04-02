@@ -35,3 +35,7 @@ REFRESH_TIMER=300000
 // only for local development
 DEV_MODE=true
 ```
+
+### Screen size
+
+The current UI is built for a 4k display (3840x2160). You can use the `MENU_ORIENTATION` to change between `horizontal` and `vertical` (default), but when developing in a browser, its best to simulate this exact resolution.
