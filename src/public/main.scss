@@ -25,6 +25,10 @@ body {
     }    
 }
 
+i, .slug {
+    text-wrap: balance;
+}
+
 .hide {
     display: none !important;
 }
@@ -47,10 +51,10 @@ body {
 .categories {
     position: relative;
     columns: 2;
-    column-gap: 80px;
+    column-gap: 40px;
     width: 100%;
-    padding: 0px 80px 0 130px;
-    margin-top: 60px;
+    padding: 0px 60px 0 130px;
+    margin-top: 50px;
 }
 
 .category {

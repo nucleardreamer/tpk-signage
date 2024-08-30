@@ -6,9 +6,9 @@ each catItems, catTitle in cats
                 .d-flex.flex-column.mb-3
                     .d-flex.flex-row
                         b.name= item.Name
-                        .mr-1.ml-1.light-grey |
-                        .slug= item.Slug
-                        .mr-1.ml-1.light-grey |
+                        .mr-1.ml-2.light-grey |
                         i.price.ml-1 $#{item.Price}
+                    div 
+                        .slug= item.Slug
                     div
                         i= item.Description

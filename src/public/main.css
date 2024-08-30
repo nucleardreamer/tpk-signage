@@ -25,6 +25,10 @@ body {
     max-width: 100%;
   }
 }
+i, .slug {
+  text-wrap: balance;
+}
+
 .hide {
   display: none !important;
 }
@@ -47,10 +51,10 @@ body {
 .categories {
   position: relative;
   columns: 2;
-  column-gap: 80px;
+  column-gap: 40px;
   width: 100%;
-  padding: 0px 80px 0 130px;
-  margin-top: 60px;
+  padding: 0px 60px 0 130px;
+  margin-top: 50px;
 }
 
 .category {
@@ -90,7 +94,7 @@ body {
   top: 3200px;
   width: 100%;
   z-index: 3;
-  display: flex;
+  display: none;
   flex-direction: row;
   justify-content: left;
   padding: 0 5em;
